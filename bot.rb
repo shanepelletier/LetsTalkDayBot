@@ -11,6 +11,8 @@ client = Twitter::REST::Client.new do |config|
   config.access_token_secret = ENV['TWITTER_ACCESS_TOKEN_SECRET']
 end
 
+client.update("DISREGARD")
+
 File.open("input.txt", "r") do |file|
   input = file.read
   words = input.split(" ")
