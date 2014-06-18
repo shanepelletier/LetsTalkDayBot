@@ -11,12 +11,15 @@ client = Twitter::REST::Client.new do |config|
   config.access_token_secret = ENV['TWITTER_ACCESS_TOKEN_SECRET']
 end
 
-client.update("DISREGARD")
-
 File.open("input.txt", "r") do |file|
   input = file.read
   words = input.split(" ")
-  initial = words[Random.rand(words.length)]
-  puts initial
+  wordlist = Hash.new(0)
+  words.length.times do |i|
+    if words[i + 1] != nil
+      wordpair = [words[i], words[i + 1]]
+      wordlist[wordpair] += 1
+    end
+  end
+  puts wordlist
 end
-
